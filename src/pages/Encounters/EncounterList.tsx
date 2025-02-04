@@ -478,7 +478,7 @@ export function EncounterList({
                           })
                         }
                       >
-                        All
+                        {t("all")}
                       </TabsTrigger>
                       <TabsTrigger
                         value="planned"
@@ -491,7 +491,7 @@ export function EncounterList({
                         }
                       >
                         <CareIcon icon="l-calender" className="mr-2 h-4 w-4" />
-                        Planned
+                        {t("encounter_status__planned")}
                       </TabsTrigger>
                       <TabsTrigger
                         value="in_progress"
@@ -504,7 +504,7 @@ export function EncounterList({
                         }
                       >
                         <CareIcon icon="l-spinner" className="mr-2 h-4 w-4" />
-                        In Progress
+                        {t("encounter_class__in_progress")}
                       </TabsTrigger>
                       <TabsTrigger
                         value="discharged"
@@ -517,7 +517,7 @@ export function EncounterList({
                         }
                       >
                         <CareIcon icon="l-home" className="mr-2 h-4 w-4" />
-                        Discharged
+                        {t("discharge")}
                       </TabsTrigger>
                       <TabsTrigger
                         value="completed"
@@ -530,7 +530,7 @@ export function EncounterList({
                         }
                       >
                         <CareIcon icon="l-check" className="mr-2 h-4 w-4" />
-                        Completed
+                        {t("completed")}
                       </TabsTrigger>
                       <TabsTrigger
                         value="cancelled"
@@ -543,7 +543,7 @@ export function EncounterList({
                         }
                       >
                         <CareIcon icon="l-x" className="mr-2 h-4 w-4" />
-                        Cancelled
+                        {t("cancelled")}
                       </TabsTrigger>
                     </div>
                   </TabsList>
@@ -569,7 +569,7 @@ export function EncounterList({
                         })
                       }
                     >
-                      All Types
+                      {t("all")}
                     </TabsTrigger>
                     <TabsTrigger
                       value="imp"
@@ -583,7 +583,7 @@ export function EncounterList({
                       }
                     >
                       <CareIcon icon="l-hospital" className="mr-2 h-4 w-4" />
-                      Inpatient
+                      {t("encounter_class__imp")}
                     </TabsTrigger>
                     <TabsTrigger
                       value="amb"
@@ -597,7 +597,7 @@ export function EncounterList({
                       }
                     >
                       <CareIcon icon="l-user" className="mr-2 h-4 w-4" />
-                      Ambulatory
+                      {t("encounter_class__amb")}
                     </TabsTrigger>
                     <TabsTrigger
                       value="obsenc"
@@ -611,7 +611,7 @@ export function EncounterList({
                       }
                     >
                       <CareIcon icon="l-eye" className="mr-2 h-4 w-4" />
-                      Observation
+                      {t("encounter_class__obsenc")}
                     </TabsTrigger>
                     <TabsTrigger
                       value="emer"
@@ -625,7 +625,7 @@ export function EncounterList({
                       }
                     >
                       <CareIcon icon="l-ambulance" className="mr-2 h-4 w-4" />
-                      Emergency
+                      {t("emergency")}
                     </TabsTrigger>
                     <TabsTrigger
                       value="vr"
@@ -639,7 +639,7 @@ export function EncounterList({
                       }
                     >
                       <CareIcon icon="l-video" className="mr-2 h-4 w-4" />
-                      Virtual
+                      {t("encounter_class__vr")}
                     </TabsTrigger>
                     <TabsTrigger
                       value="hh"
@@ -653,7 +653,7 @@ export function EncounterList({
                       }
                     >
                       <CareIcon icon="l-home" className="mr-2 h-4 w-4" />
-                      Home Health
+                      {t("encounter_class__hh")}
                     </TabsTrigger>
                   </div>
                 </TabsList>
