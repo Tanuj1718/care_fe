@@ -32,8 +32,8 @@ export default function DateField({
   // Only set initial values from `date` prop without padding
   useEffect(() => {
     if (date) {
-      setDay(date.getDate().toString());
-      setMonth((date.getMonth() + 1).toString());
+      setDay(date.getDate().toString().padStart(2, "0"));
+      setMonth((date.getMonth() + 1).toString().padStart(2, "0"));
       setYear(date.getFullYear().toString());
     } else {
       setDay("");
@@ -46,16 +46,22 @@ export default function DateField({
     const newDay = e.target.value;
     setDay(newDay);
 
+    // Check if change is from spinner (stepUp/stepDown) vs keyboard input
+    const isFromSpinner =
+      e.nativeEvent instanceof InputEvent &&
+      (e.nativeEvent as InputEvent).inputType === "insertReplacementText";
+
     if (
-      newDay.length === 2 &&
+      (isFromSpinner || newDay.length === 2) &&
       parseInt(newDay) >= 1 &&
       parseInt(newDay) <= 31
     ) {
-      if (isValidDate(year, month, newDay) && onChange) {
+      const modifiedDay = isFromSpinner ? newDay.padStart(2, "0") : newDay;
+      if (isValidDate(year, month, modifiedDay) && onChange) {
         const updatedDate = new Date(
           parseInt(year),
           parseInt(month) - 1,
-          parseInt(newDay),
+          parseInt(modifiedDay),
         );
         onChange(updatedDate);
       }
@@ -66,15 +72,23 @@ export default function DateField({
     const newMonth = e.target.value;
     setMonth(newMonth);
 
+    // Check if change is from spinner (stepUp/stepDown) vs keyboard input
+    const isFromSpinner =
+      e.nativeEvent instanceof InputEvent &&
+      (e.nativeEvent as InputEvent).inputType === "insertReplacementText";
+
     if (
-      newMonth.length === 2 &&
+      (isFromSpinner || newMonth.length === 2) &&
       parseInt(newMonth) >= 1 &&
       parseInt(newMonth) <= 12
     ) {
-      if (isValidDate(year, newMonth, day) && onChange) {
+      const modifiedMonth = isFromSpinner
+        ? newMonth.padStart(2, "0")
+        : newMonth;
+      if (isValidDate(year, modifiedMonth, day) && onChange) {
         const updatedDate = new Date(
           parseInt(year),
-          parseInt(newMonth) - 1,
+          parseInt(modifiedMonth) - 1,
           parseInt(day),
         );
         onChange(updatedDate);
@@ -117,30 +131,12 @@ export default function DateField({
   // Handle month blur to pad single digit values
   const handleMonthBlur = () => {
     if (month.length === 1 && parseInt(month) >= 1) {
-      setYear(year);
-      if (isValidDate(year, month, day) && onChange) {
+      const paddedMonth = month.padStart(2, "0");
+      setMonth(paddedMonth);
+      if (isValidDate(year, paddedMonth, day) && onChange) {
         const updatedDate = new Date(
           parseInt(year),
-          parseInt(year) - 1,
-          parseInt(day),
-        );
-        onChange(updatedDate);
-      }
-    }
-  };
-
-  const handleYearBlur = () => {
-    const currYear = new Date().getFullYear();
-    if (
-      year.length === 4 &&
-      parseInt(year) >= 1900 &&
-      parseInt(year) <= currYear
-    ) {
-      setDay(year);
-      if (isValidDate(year, month, day) && onChange) {
-        const updatedDate = new Date(
-          parseInt(year),
-          parseInt(month) - 1,
+          parseInt(paddedMonth) - 1,
           parseInt(day),
         );
         onChange(updatedDate);
@@ -189,7 +185,6 @@ export default function DateField({
           placeholder="YYYY"
           value={year}
           onChange={handleYearChange}
-          onBlur={handleYearBlur}
           min={1900}
           max={new Date().getFullYear()}
           id={`${id}-year-input`}
