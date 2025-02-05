@@ -29,10 +29,11 @@ export default function DateField({
   const [month, setMonth] = useState("");
   const [year, setYear] = useState("");
 
+  // Only set initial values from `date` prop without padding
   useEffect(() => {
     if (date) {
-      setDay(date.getDate().toString().padStart(2, "0"));
-      setMonth((date.getMonth() + 1).toString().padStart(2, "0"));
+      setDay(date.getDate().toString());
+      setMonth((date.getMonth() + 1).toString());
       setYear(date.getFullYear().toString());
     } else {
       setDay("");
@@ -58,7 +59,6 @@ export default function DateField({
         );
         onChange(updatedDate);
       }
-      document.getElementById(`${id}-month-input`)?.focus();
     }
   };
 
@@ -79,8 +79,6 @@ export default function DateField({
         );
         onChange(updatedDate);
       }
-
-      document.getElementById(`${id}-year-input`)?.focus();
     }
   };
 
@@ -100,6 +98,56 @@ export default function DateField({
     }
   };
 
+  // Handle day blur to pad single digit values
+  const handleDayBlur = () => {
+    if (day.length === 1 && parseInt(day) >= 1 && parseInt(day) <= 9) {
+      const paddedDay = day.padStart(2, "0");
+      setDay(paddedDay);
+      if (isValidDate(year, month, paddedDay) && onChange) {
+        const updatedDate = new Date(
+          parseInt(year),
+          parseInt(month) - 1,
+          parseInt(paddedDay),
+        );
+        onChange(updatedDate);
+      }
+    }
+  };
+
+  // Handle month blur to pad single digit values
+  const handleMonthBlur = () => {
+    if (month.length === 1 && parseInt(month) >= 1) {
+      setYear(year);
+      if (isValidDate(year, month, day) && onChange) {
+        const updatedDate = new Date(
+          parseInt(year),
+          parseInt(year) - 1,
+          parseInt(day),
+        );
+        onChange(updatedDate);
+      }
+    }
+  };
+
+  const handleYearBlur = () => {
+    const currYear = new Date().getFullYear();
+    if (
+      year.length === 4 &&
+      parseInt(year) >= 1900 &&
+      parseInt(year) <= currYear
+    ) {
+      setDay(year);
+      if (isValidDate(year, month, day) && onChange) {
+        const updatedDate = new Date(
+          parseInt(year),
+          parseInt(month) - 1,
+          parseInt(day),
+        );
+        onChange(updatedDate);
+      }
+    }
+  };
+
   return (
     <div className="flex items-center gap-2">
       <div className="flex-1">
@@ -109,6 +157,7 @@ export default function DateField({
           placeholder="DD"
           value={day}
           onChange={handleDayChange}
+          onBlur={handleDayBlur}
           min={1}
           max={31}
           id={`${id}-day-input`}
@@ -124,6 +173,7 @@ export default function DateField({
           placeholder="MM"
           value={month}
           onChange={handleMonthChange}
+          onBlur={handleMonthBlur}
           min={1}
           max={12}
           id={`${id}-month-input`}
@@ -139,7 +189,9 @@ export default function DateField({
           placeholder="YYYY"
           value={year}
           onChange={handleYearChange}
+          onBlur={handleYearBlur}
           min={1900}
+          max={new Date().getFullYear()}
           id={`${id}-year-input`}
           data-cy={`${id}-year-input`}
           disabled={disabled}
