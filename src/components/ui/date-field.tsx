@@ -29,7 +29,6 @@ export default function DateField({
   const [month, setMonth] = useState("");
   const [year, setYear] = useState("");
 
-  // Only set initial values from `date` prop without padding
   useEffect(() => {
     if (date) {
       setDay(date.getDate().toString().padStart(2, "0"));

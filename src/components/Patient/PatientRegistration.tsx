@@ -169,7 +169,6 @@ export default function PatientRegistration(
           partial_id: resp?.id?.slice(0, 5),
         },
       });
-      console.log(resp.date_of_birth);
     },
     onError: () => {
       toast.error(t("patient_registration_error"));
