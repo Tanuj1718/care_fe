@@ -95,10 +95,10 @@ export default function LocationView({ id, facilityId }: Props) {
 
   return (
     <Page title={location?.name || t("location")}>
-      <div className="my-4 flex flex-col flex-wrap">
-        <div className="py-2 flex flex-wrap justify-between">
-          <div className="flex flex-col flex-wrap justify-between items-start gap-4">
-            <div className="flex flex-wrap items-center gap-4 py-2">
+      <div className="space-y-6">
+        <div className="flex justify-between">
+          <div className="flex flex-col justify-between items-start gap-4">
+            <div className="flex items-center gap-4">
               <h2 className="text-lg font-semibold">{t("locations")}</h2>
               <Badge variant="outline">
                 {getLocationFormLabel(location?.form)}
@@ -117,7 +117,7 @@ export default function LocationView({ id, facilityId }: Props) {
                 </Button>
               )}
             </div>
-            <div className="flex flex-wrap w-72">
+            <div className="w-72">
               <Input
                 placeholder={t("search_by_name")}
                 value={searchQuery}
@@ -125,7 +125,7 @@ export default function LocationView({ id, facilityId }: Props) {
                   setSearchQuery(e.target.value);
                   setPage(1);
                 }}
-                className="w-full flex flex-wrap"
+                className="w-full"
               />
             </div>
           </div>
@@ -136,7 +136,7 @@ export default function LocationView({ id, facilityId }: Props) {
               currentOrganizations={locationOrganizations.results}
               facilityId={facilityId}
               trigger={
-                <Button variant="outline" className="py-2 my-2 ">
+                <Button variant="outline">
                   <CareIcon icon="l-building" className="h-4 w-4 mr-2" />
                   {t("manage_organizations")}
                 </Button>
