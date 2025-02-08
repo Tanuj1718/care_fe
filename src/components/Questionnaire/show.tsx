@@ -254,7 +254,7 @@ export function QuestionnaireShow({ id }: QuestionnaireShowProps) {
                       <Badge
                         className={
                           questionnaire.status === "active"
-                            ? "bg-green-100 text-green-800"
+                            ? "bg-green-100 text-green-800 hover:bg-green-200"
                             : ""
                         }
                       >
@@ -304,10 +304,10 @@ export function QuestionnaireShow({ id }: QuestionnaireShowProps) {
             <CardContent>
               <QuestionnaireForm
                 questionnaireSlug={id}
-                patientId={"some_patient_id"}
+                patientId={"preview"}
                 subjectType={"encounter"}
-                encounterId={"some_encounter_id"}
-                facilityId={"facilityId"}
+                encounterId={"preview"}
+                facilityId={"preview"}
               />
             </CardContent>
           </Card>
