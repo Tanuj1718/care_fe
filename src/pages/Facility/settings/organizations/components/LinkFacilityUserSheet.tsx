@@ -136,13 +136,13 @@ export default function LinkFacilityUserSheet({
           {selectedUser && (
             <div className="space-y-4">
               <div className="rounded-lg border p-4 space-y-4">
-                <div className="flex items-start gap-4">
+                <div className="flex flex-wrap items-start gap-4">
                   <Avatar
                     imageUrl={selectedUser.profile_picture_url}
                     name={formatName(selectedUser)}
                     className="h-12 w-12"
                   />
-                  <div className="flex flex-col flex-1">
+                  <div className="flex flex-col truncate">
                     <span className="font-medium text-lg">
                       {selectedUser.first_name} {selectedUser.last_name}
                     </span>
@@ -153,7 +153,7 @@ export default function LinkFacilityUserSheet({
                 </div>
 
                 <div className="grid grid-cols-2 gap-4 pt-2 border-t">
-                  <div>
+                  <div className="truncate">
                     <span className="text-sm text-gray-500">Username</span>
                     <p className="text-sm font-medium">
                       {selectedUser.username}

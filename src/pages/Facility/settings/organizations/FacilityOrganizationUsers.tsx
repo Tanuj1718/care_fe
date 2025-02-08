@@ -66,7 +66,7 @@ export default function FacilityOrganizationUsers({ id, facilityId }: Props) {
   return (
     <FacilityOrganizationLayout id={id} facilityId={facilityId}>
       <div className="space-y-6">
-        <div className="flex justify-between items-center">
+        <div className="flex justify-between items-center flex-wrap">
           <h2 className="text-lg font-semibold">{t("users")}</h2>
           <div className="flex gap-2">
             <AddUserSheet

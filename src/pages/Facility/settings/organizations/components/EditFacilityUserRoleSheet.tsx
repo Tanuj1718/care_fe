@@ -159,7 +159,7 @@ export default function EditUserRoleSheet({
               <div className="flex flex-wrap">
                 <div className="mr-3">
                   <span className="text-sm text-gray-500">{t("username")}</span>
-                  <p className="text-sm font-medium ">
+                  <p className="text-sm font-medium truncate ">
                     {userRole.user.username}
                   </p>
                 </div>
