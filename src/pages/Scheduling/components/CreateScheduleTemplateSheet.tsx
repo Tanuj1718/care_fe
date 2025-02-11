@@ -431,50 +431,54 @@ export default function CreateScheduleTemplateSheet({
                         )}
                       /> */}
 
-                      <div className="flex items-center gap-0 sm:gap-4 col-span-2 md:col-span-1">
-                        <FormField
-                          control={form.control}
-                          name={`availabilities.${index}.start_time`}
-                          render={({ field }) => (
-                            <FormItem className="flex-1">
-                              <FormLabel required>{t("start_time")}</FormLabel>
-                              <FormControl>
-                                <Input type="time" {...field} />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
+                      <div className="flex items-center gap-0 sm:gap-4 col-span-2 md:col-span-1 h-28">
+                        <div className="flex items-center justify-center mt-16">
+                          <FormField
+                            control={form.control}
+                            name={`availabilities.${index}.start_time`}
+                            render={({ field }) => (
+                              <FormItem className="flex-1 mb-12 h-28">
+                                <FormLabel required>
+                                  {t("start_time")}
+                                </FormLabel>
+                                <FormControl>
+                                  <Input type="time" {...field} />
+                                </FormControl>
+                                <FormMessage />
+                              </FormItem>
+                            )}
+                          />
 
-                        <ArrowRightIcon className="size-4 mt-5" />
+                          <ArrowRightIcon className="size-4 mb-20" />
 
-                        <FormField
-                          control={form.control}
-                          name={`availabilities.${index}.end_time`}
-                          render={({ field }) => (
-                            <FormItem className="flex-1">
-                              <FormLabel required>{t("end_time")}</FormLabel>
-                              <FormControl>
-                                <Input type="time" {...field} />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
+                          <FormField
+                            control={form.control}
+                            name={`availabilities.${index}.end_time`}
+                            render={({ field }) => (
+                              <FormItem className="flex-1 mb-12 h-28">
+                                <FormLabel required>{t("end_time")}</FormLabel>
+                                <FormControl>
+                                  <Input type="time" {...field} />
+                                </FormControl>
+                                <FormMessage />
+                              </FormItem>
+                            )}
+                          />
+                        </div>
                       </div>
 
                       {form.watch(`availabilities.${index}.slot_type`) ===
                         "appointment" && (
                         <>
-                          <div className="flex items-center gap-2 sm:gap-4 col-span-2 md:col-span-1">
+                          <div className="flex items-center gap-2 sm:gap-4 col-span-2 md:col-span-1 h-28 pt-4">
                             <FormField
                               control={form.control}
                               name={`availabilities.${index}.slot_size_in_minutes`}
                               render={({ field }) => (
-                                <FormItem className="flex-1">
+                                <FormItem className="flex-1 mt-4 mb-8 h-24">
                                   <FormLabel
                                     required
-                                    className="whitespace-nowrap"
+                                    className="whitespace-nowrap "
                                   >
                                     {t("schedule_slot_size_label")}
                                   </FormLabel>
@@ -499,7 +503,7 @@ export default function CreateScheduleTemplateSheet({
                               control={form.control}
                               name={`availabilities.${index}.tokens_per_slot`}
                               render={({ field }) => (
-                                <FormItem className="flex-1">
+                                <FormItem className="flex-1 mt-4 mb-8 h-24">
                                   <FormLabel
                                     required
                                     className="whitespace-nowrap"
@@ -530,7 +534,7 @@ export default function CreateScheduleTemplateSheet({
                       )}
                     </div>
 
-                    <div className="mt-4">
+                    <div>
                       <FormField
                         control={form.control}
                         name={`availabilities.${index}.reason`}
