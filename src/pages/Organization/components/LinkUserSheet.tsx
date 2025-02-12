@@ -20,6 +20,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { TooltipComponent } from "@/components/ui/tooltip";
 
 import { Avatar } from "@/components/Common/Avatar";
 import UserSelector from "@/components/Common/UserSelector";
@@ -135,7 +136,7 @@ export default function LinkUserSheet({
           {selectedUser && (
             <div className="space-y-4">
               <div className="rounded-lg border p-4 space-y-4">
-                <div className="flex items-start gap-4">
+                <div className="flex items-start gap-4 truncate border-t">
                   <Avatar
                     name={`${selectedUser.first_name} ${selectedUser.last_name}`}
                     imageUrl={selectedUser.profile_picture_url}
@@ -154,7 +155,7 @@ export default function LinkUserSheet({
                 <div className="grid grid-cols-2 gap-4 pt-2 border-t">
                   <div>
                     <span className="text-sm text-gray-500">Username</span>
-                    <p className="text-sm font-medium">
+                    <p className="text-sm font-medium truncate">
                       {selectedUser.username}
                     </p>
                   </div>
@@ -192,15 +193,16 @@ export default function LinkUserSheet({
                   </SelectContent>
                 </Select>
               </div>
-
-              <Button
-                className="w-full"
-                onClick={handleAddUser}
-                disabled={!selectedRole}
-                data-cy="link-user-button"
-              >
-                Link to Organization
-              </Button>
+              <TooltipComponent content="Click here to link the user to the organization">
+                <Button
+                  className="w-full"
+                  onClick={handleAddUser}
+                  disabled={!selectedRole}
+                  data-cy="link-user-button"
+                >
+                  Link to Organization
+                </Button>
+              </TooltipComponent>
             </div>
           )}
         </div>
